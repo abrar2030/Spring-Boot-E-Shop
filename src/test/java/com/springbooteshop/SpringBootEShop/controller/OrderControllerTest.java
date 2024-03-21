@@ -15,7 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.support.BindingAwareModelMap;
 
 import com.springbooteshop.SpringBootEShop.model.Book;
-import com.springbooteshop.SpringBootEShop.bookstore.model.Customer;
+import com.springbooteshop.SpringBootEShop.model.Customer;
 import com.springbooteshop.SpringBootEShop.model.CustomerBooks;
 import com.springbooteshop.SpringBootEShop.service.BillingService;
 

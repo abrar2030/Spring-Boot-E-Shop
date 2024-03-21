@@ -15,9 +15,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.springbooteshop.SpringBootEShop.bookstore.model.Book;
-import com.springbooteshop.SpringBootEShop.bookstore.service.BookService;
-import com.springbooteshop.SpringBootEShop.bookstore.service.ShoppingCartService;
+import com.springbooteshop.SpringBootEShop.model.Book;
+import com.springbooteshop.SpringBootEShop.service.BookService;
+import com.springbooteshop.SpringBootEShop.service.ShoppingCartService;
 
 class CartControllerTest {
 

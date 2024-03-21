@@ -23,8 +23,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.springbooteshop.SpringBootEShop.model.Book;
 import com.springbooteshop.SpringBootEShop.model.Customer;
 import com.springbooteshop.SpringBootEShop.service.BillingService;
-import com.springbooteshop.SpringBootEShop.bookstore.service.EmailService;
-import com.springbooteshop.SpringBootEShop.bookstore.service.ShoppingCartService;
+import com.springbooteshop.SpringBootEShop.service.EmailService;
+import com.springbooteshop.SpringBootEShop.service.ShoppingCartService;
 
 class CheckoutControllerTest {
 

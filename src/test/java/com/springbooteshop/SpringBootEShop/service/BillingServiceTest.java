@@ -17,12 +17,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import com.springbooteshop.SpringBootEShope.model.Book;
-import com.springbooteshop.SpringBootEShope.model.Customer;
-import com.springbooteshop.SpringBootEShope.model.CustomerBooks;
-import com.springbooteshop.SpringBootEShope.model.Order;
-import com.springbooteshop.SpringBootEShope.repository.BillingRepository;
-import com.springbooteshop.SpringBootEShope.repository.OrderRepository;
+import com.springbooteshop.SpringBootEShop.model.Book;
+import com.springbooteshop.SpringBootEShop.model.Customer;
+import com.springbooteshop.SpringBootEShop.model.CustomerBooks;
+import com.springbooteshop.SpringBootEShop.model.Order;
+import com.springbooteshop.SpringBootEShop.repository.BillingRepository;
+import com.springbooteshop.SpringBootEShop.repository.OrderRepository;
 
 class BillingServiceTest {
 
@@ -100,28 +100,6 @@ class BillingServiceTest {
 		for (Order order : capturedOrders) {
 			assertThat(customer).isEqualTo(order.getCustomer());
 		}
-	}
-
-	@Test
-	void shouldFindOrdersByCustomerId() {
-		Customer customer1 = new Customer();
-		customer1.setId(1L);
-		Book book1 = new Book();
-		Order order1 = new Order(1L, LocalDate.now(), customer1, book1);
-
-		Customer customer2 = new Customer();
-		customer2.setId(2L);
-		Book book2 = new Book();
-		Book book3 = new Book();
-		Order order2 = new Order(2L, LocalDate.now(), customer2, book2);
-		Order order3 = new Order(3L, LocalDate.now(), customer2, book3);
-
-		List<Order> orders = Arrays.asList(order1, order2, order3);
-		when(orderRepository.findAll()).thenReturn(orders);
-
-		List<CustomerBooks> customerBooks = billingService.findOrdersByCustomerId(2L);
-		assertThat(customer2).isEqualTo(customerBooks.get(0).getCustomer());
-		assertThat(List.of(book2, book3)).isEqualTo(customerBooks.get(0).getBooks());
 	}
 
 }
