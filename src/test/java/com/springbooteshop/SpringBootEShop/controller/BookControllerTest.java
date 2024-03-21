@@ -21,8 +21,8 @@ import org.springframework.validation.support.BindingAwareModelMap;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
-import com.springbooteshop.SpringBootEShope.model.Book;
-import com.springbooteshop.SpringBootEShop.bookstore.service.BookService;
+import com.springbooteshop.SpringBootEShop.model.Book;
+import com.springbooteshop.SpringBootEShop.service.BookService;
 
 class BookControllerTest {
 

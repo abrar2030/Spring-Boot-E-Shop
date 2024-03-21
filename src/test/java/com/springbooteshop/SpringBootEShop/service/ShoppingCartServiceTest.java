@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.junit.jupiter.api.Test;
 
-import com.springbooteshop.SpringBootEShope.model.Book;
+import com.springbooteshop.SpringBootEShop.model.Book;
 
 class ShoppingCartServiceTest {
 

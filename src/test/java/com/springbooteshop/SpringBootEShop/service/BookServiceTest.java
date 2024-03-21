@@ -17,8 +17,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import com.springbooteshop.SpringBootEShope.model.Book;
-import com.springbooteshop.SpringBootEShope.repository.BookRepository;
+import com.springbooteshop.SpringBootEShop.model.Book;
+import com.springbooteshop.SpringBootEShop.repository.BookRepository;
 
 class BookServiceTest {
 
