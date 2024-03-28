@@ -1,21 +1,25 @@
 package com.springbooteshop.SpringBootEShop.model;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import java.time.LocalDate;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
 @Entity
 @Table(name = "orders")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Order {
 
   @Getter
@@ -28,22 +32,13 @@ public class Order {
 
   @Getter
   @ManyToOne(cascade = CascadeType.MERGE)
-  @JoinColumn(name = "customer_id")
+  @JoinColumn(name = "customer_id", nullable = false) // Added nullable = false for clarity
   private Customer customer;
 
   @Getter
   @ManyToOne(cascade = CascadeType.MERGE)
-  @JoinColumn(name = "book_id")
+  @JoinColumn(name = "book_id", nullable = false) // Added nullable = false for clarity
   private Book book;
-
-  public Order() {}
-
-  public Order(Long id, LocalDate orderDate, Customer customer, Book book) {
-    this.id = id;
-    this.orderDate = orderDate;
-    this.customer = customer;
-    this.book = book;
-  }
 
   @Override
   public String toString() {

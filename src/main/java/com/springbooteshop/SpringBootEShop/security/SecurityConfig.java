@@ -1,15 +1,17 @@
 package com.springbooteshop.SpringBootEShop.security;
 
 import javax.sql.DataSource;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig {
 
   private final DataSource securityDataSource;
 
@@ -17,40 +19,35 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     this.securityDataSource = securityDataSource;
   }
 
-  @Override
-  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+  @Bean
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http.csrf(csrf -> csrf.disable()) // Disable CSRF protection
+        .authorizeHttpRequests(
+            authorize ->
+                authorize
+                    .requestMatchers("/", "/h2-console", "/search", "/cart/**")
+                    .permitAll()
+                    .requestMatchers("/book/**", "/orders/**")
+                    .hasAuthority("ADMIN"))
+        .formLogin(form -> form.loginPage("/login").permitAll())
+        .logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/"))
+        .headers(
+            headers ->
+                headers.addHeaderWriter(
+                    (request, response) ->
+                        response.setHeader(
+                            "X-Frame-Options",
+                            "SAMEORIGIN")) // Allow framing only from the same origin
+            );
 
-    auth.jdbcAuthentication().dataSource(securityDataSource);
+    return http.build();
   }
 
-  @Override
-  protected void configure(HttpSecurity http) throws Exception {
-
-    http.csrf()
-        .disable()
-        .authorizeRequests()
-        .antMatchers("/")
-        .permitAll()
-        .antMatchers("/h2-console")
-        .permitAll()
-        .antMatchers("/search")
-        .permitAll()
-        .antMatchers("/cart/**")
-        .permitAll()
-        .antMatchers("/book/**")
-        .hasAuthority("ADMIN")
-        .antMatchers("/orders/**")
-        .hasAuthority("ADMIN")
-        .and()
-        .formLogin()
-        .loginPage("/login")
-        .permitAll()
-        .and()
-        .logout()
-        .logoutUrl("/logout")
-        .logoutSuccessUrl("/");
-
-    // H2-Console enable
-    http.headers().frameOptions().disable();
+  @Bean
+  public AuthenticationManager authManager(HttpSecurity http) throws Exception {
+    AuthenticationManagerBuilder authenticationManagerBuilder =
+        http.getSharedObject(AuthenticationManagerBuilder.class);
+    authenticationManagerBuilder.jdbcAuthentication().dataSource(securityDataSource);
+    return authenticationManagerBuilder.build();
   }
 }

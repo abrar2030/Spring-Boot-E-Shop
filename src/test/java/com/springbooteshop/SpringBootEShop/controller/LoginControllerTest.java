@@ -10,10 +10,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 class LoginControllerTest {
 
-  private LoginController LoginController = new LoginController();
+  private final LoginController LoginController = new LoginController();
 
   @Test
-  void shouldShowLoginPageAndButAuthenticationFail() throws Exception {
+  void shouldShowLoginPageAndButAuthenticationFail() {
     SecurityContextHolder.getContext().setAuthentication(null);
 
     String result = LoginController.showLoginPage();
@@ -22,7 +22,7 @@ class LoginControllerTest {
   }
 
   @Test
-  void shouldShowLoginPageButAnonymousPresentAndReturnToLoginAgain() throws Exception {
+  void shouldShowLoginPageButAnonymousPresentAndReturnToLoginAgain() {
     SecurityContextHolder.getContext()
         .setAuthentication(
             new AnonymousAuthenticationToken(
@@ -34,7 +34,7 @@ class LoginControllerTest {
   }
 
   @Test
-  void shouldShowLoginPageAndAfterLoginRedirectToBook() throws Exception {
+  void shouldShowLoginPageAndAfterLoginRedirectToBook() {
     SecurityContextHolder.getContext()
         .setAuthentication(
             new UsernamePasswordAuthenticationToken(

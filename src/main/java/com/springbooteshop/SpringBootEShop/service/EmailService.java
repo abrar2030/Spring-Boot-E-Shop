@@ -2,6 +2,7 @@ package com.springbooteshop.SpringBootEShop.service;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,6 +19,6 @@ public class EmailService {
     mailMessage.setTo(to);
     mailMessage.setSubject(subject);
     mailMessage.setText(message);
-    mailSender.send(mailMessage);
+    mailSender.send((MimeMessagePreparator) mailMessage);
   }
 }

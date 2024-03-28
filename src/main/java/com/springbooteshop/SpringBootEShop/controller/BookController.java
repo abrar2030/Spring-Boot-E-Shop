@@ -2,11 +2,11 @@ package com.springbooteshop.SpringBootEShop.controller;
 
 import com.springbooteshop.SpringBootEShop.model.Book;
 import com.springbooteshop.SpringBootEShop.service.BookService;
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import javax.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;

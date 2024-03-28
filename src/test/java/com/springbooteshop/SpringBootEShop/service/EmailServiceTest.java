@@ -10,8 +10,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 
 public class EmailServiceTest {
 
-  private JavaMailSender mailSender = mock(JavaMailSender.class);
-  private EmailService emailService = new EmailService(mailSender);
+  private final JavaMailSender mailSender = mock(JavaMailSender.class);
+  private final EmailService emailService = new EmailService(mailSender);
 
   @Test
   void sendEmailTest() {

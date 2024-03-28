@@ -26,10 +26,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 class CheckoutControllerTest {
 
-  private BillingService billingService = mock(BillingService.class);
-  private EmailService emailService = mock(EmailService.class);
-  private ShoppingCartService shoppingCartService = mock(ShoppingCartService.class);
-  private CheckoutController checkoutController =
+  private final BillingService billingService = mock(BillingService.class);
+  private final EmailService emailService = mock(EmailService.class);
+  private final ShoppingCartService shoppingCartService = mock(ShoppingCartService.class);
+  private final CheckoutController checkoutController =
       new CheckoutController(billingService, emailService, shoppingCartService);
 
   @Test

@@ -1,13 +1,17 @@
 package com.springbooteshop.SpringBootEShop.service;
 
 import com.springbooteshop.SpringBootEShop.model.Book;
+import jakarta.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.http.HttpSession;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Service
 public class ShoppingCartService {
 

@@ -1,18 +1,22 @@
 package com.springbooteshop.SpringBootEShop.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "customers")
 public class Customer {
 
@@ -30,6 +34,7 @@ public class Customer {
   @Size(max = 50, message = "{billing.name.maxSize}")
   private String name;
 
+  @Setter
   @Column(name = "surname", nullable = false)
   @NotBlank(message = "{billing.surname.notBlank}")
   @Size(max = 50, message = "{billing.surname.maxSize}")
@@ -41,6 +46,7 @@ public class Customer {
   @Size(max = 55, message = "{billing.countryRegion.maxSize}")
   private String countryRegion;
 
+  @Setter
   @Column(name = "street_and_house_number", nullable = false)
   @NotBlank(message = "{billing.streetAndHouseNumber.notBlank}")
   @Size(max = 100, message = "{billing.streetAndHouseNumber.maxSize}")
@@ -58,6 +64,7 @@ public class Customer {
   @Size(max = 18, message = "{billing.postalCode.maxSize}")
   private String postalCode;
 
+  @Setter
   @Column(name = "phone_number", nullable = false)
   @NotBlank(message = "{billing.phoneNumber.notBlank}")
   @Size(max = 15, message = "{billing.phoneNumber.maxSize}")
@@ -69,29 +76,6 @@ public class Customer {
   @Size(max = 254, message = "{billing.email.maxSize}")
   @Email
   private String email;
-
-  public Customer() {}
-
-  public Customer(
-      Long id,
-      String name,
-      String surname,
-      String countryRegion,
-      String streetAndHouseNumber,
-      String city,
-      String postalCode,
-      String phoneNumber,
-      String email) {
-    this.id = id;
-    this.name = name;
-    this.surname = surname;
-    this.countryRegion = countryRegion;
-    this.streetAndHouseNumber = streetAndHouseNumber;
-    this.city = city;
-    this.postalCode = postalCode;
-    this.phoneNumber = phoneNumber;
-    this.email = email;
-  }
 
   @Override
   public String toString() {

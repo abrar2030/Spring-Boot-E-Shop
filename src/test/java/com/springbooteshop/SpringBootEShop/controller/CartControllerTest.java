@@ -18,9 +18,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 class CartControllerTest {
 
-  private BookService bookService = mock(BookService.class);
-  private ShoppingCartService shoppingCartService = mock(ShoppingCartService.class);
-  private CartController cartController = new CartController(bookService, shoppingCartService);
+  private final BookService bookService = mock(BookService.class);
+  private final ShoppingCartService shoppingCartService = mock(ShoppingCartService.class);
+  private final CartController cartController =
+      new CartController(bookService, shoppingCartService);
 
   @Test
   void shouldReturnPaginatedShoppingCart() {
