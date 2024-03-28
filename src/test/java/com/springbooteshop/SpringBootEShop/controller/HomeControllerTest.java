@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 import com.springbooteshop.SpringBootEShop.model.Book;
 import com.springbooteshop.SpringBootEShop.service.BookService;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Page;
@@ -17,8 +18,8 @@ import org.springframework.validation.support.BindingAwareModelMap;
 
 class HomeControllerTest {
 
-  private BookService bookService = mock(BookService.class);
-  private HomeController homeController = new HomeController(bookService);
+  private final BookService bookService = mock(BookService.class);
+  private final HomeController homeController = new HomeController(bookService);
 
   @Test
   void findPaginated_shouldReturnPaginatedBooksWhenTermIsNull() {
@@ -33,7 +34,7 @@ class HomeControllerTest {
 
     assertThat(result).isEqualTo("index");
     assertThat(model.asMap().get("bookPage")).isEqualTo(bookPage);
-    assertThat(model.asMap().get("pageNumbers")).isEqualTo(Arrays.asList(1));
+    assertThat(model.asMap().get("pageNumbers")).isEqualTo(List.of(1));
   }
 
   @Test

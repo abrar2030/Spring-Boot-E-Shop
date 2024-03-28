@@ -19,8 +19,8 @@ import org.springframework.validation.support.BindingAwareModelMap;
 
 class OrderControllerTest {
 
-  private BillingService billingService = mock(BillingService.class);
-  private OrderController orderController = new OrderController(billingService);
+  private final BillingService billingService = mock(BillingService.class);
+  private final OrderController orderController = new OrderController(billingService);
 
   @Test
   void testSearchBooksWithBlankTerm() {
@@ -45,7 +45,7 @@ class OrderControllerTest {
         new Book(
             1L,
             "The Lorde of the Rings",
-            new BigDecimal(99.99),
+            new BigDecimal("99.99"),
             "J. R. R. Tolkien",
             "978-0-261-10320-7",
             "Allen & Unwin",
@@ -54,7 +54,7 @@ class OrderControllerTest {
         new Book(
             2L,
             "The Da Vinci Code",
-            new BigDecimal(250.89),
+            new BigDecimal("250.89"),
             "Dan Brown",
             "978-1-612-13028-6",
             "Doubleday",
@@ -79,12 +79,12 @@ class OrderControllerTest {
     List<Book> actualBooks = (List<Book>) model.asMap().get("books");
     assertThat(2).isEqualByComparingTo(actualBooks.size());
     assertThat("The Lorde of the Rings").isEqualTo(actualBooks.get(0).getName());
-    assertThat(new BigDecimal(99.99)).isEqualTo(actualBooks.get(0).getPrice());
+    assertThat(new BigDecimal("99.99")).isEqualTo(actualBooks.get(0).getPrice());
     assertThat("J. R. R. Tolkien").isEqualTo(actualBooks.get(0).getAuthors());
     assertThat("978-0-261-10320-7").isEqualTo(actualBooks.get(0).getIsbn());
     assertThat("Allen & Unwin").isEqualTo(actualBooks.get(0).getPublisher());
     assertThat("The Da Vinci Code").isEqualTo(actualBooks.get(1).getName());
-    assertThat(new BigDecimal(250.89)).isEqualTo(actualBooks.get(1).getPrice());
+    assertThat(new BigDecimal("250.89")).isEqualTo(actualBooks.get(1).getPrice());
     assertThat("Dan Brown").isEqualTo(actualBooks.get(1).getAuthors());
     assertThat("978-1-612-13028-6").isEqualTo(actualBooks.get(1).getIsbn());
     assertThat("Doubleday").isEqualTo(actualBooks.get(1).getPublisher());
